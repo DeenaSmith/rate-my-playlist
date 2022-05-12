@@ -60,7 +60,7 @@ Post.init(
         isUrl: true,
       },
     },
-    title: {
+    keywords: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -70,13 +70,6 @@ Post.init(
         model: "user",
         key: "id",
       },
-    },
-    keywords_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'keywords',
-        key: 'id'
-      }
     }
   },
   {
