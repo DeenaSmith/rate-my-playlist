@@ -109,4 +109,3 @@ package-lock.json
 .prettierrc.json
 .env
 .prettierignore
-tailwind.config.js
