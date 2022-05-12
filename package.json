@@ -11,13 +11,17 @@
     "sequelize": "^6.19.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "tailwindcss -i ./src/style.css -o ./src/main.css",
+    "watch": "tailwindcss -i ./src/style.css -o ./src/main.css --watch"
   },
   "name": "rate-my-playlist",
   "description": "",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jwhitney2209/rate-my-playlist.git"
