@@ -1,24 +1,11 @@
 // import models
 const Comment = require('./Comment');
-const Playlist = require('./Playlist');
 const Post = require('./Post');
-const Tag = require('./Tag');
+const Keywords = require('./Keywords');
 const User = require('./User');
 const Vote = require('./Vote');
 
 User.hasMany(Post, {
-  foreignKey: 'user_id'
-});
-
-User.hasMany(Playlist, {
-  foreignKey: 'user_id'
-});
-
-Playlist.belongsTo(Post, {
-  foreignKey: 'post_id'
-});
-
-Playlist.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
@@ -70,16 +57,19 @@ Post.hasMany(Comment, {
   foreignKey: 'post_id'
 });
 
-Tag.belongsToMany(Post, {
-  through: Playlist,
-  foreignKey: 'tag_id',
+Post.hasMany(Keywords, {
+  foreignKey: 'tag_id'
+});
+
+Keywords.belongsToMany(Post, {
+  through: User,
+  foreignKey: 'post_id'
 });
 
 module.exports = {
   Comment,
-  Playlist,
   Post,
-  Tag,
+  Keywords,
   User,
   Vote,
 };
