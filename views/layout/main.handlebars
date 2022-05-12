@@ -1,39 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/main.css">
-  <title>Just Tech News</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RateMyPlaylist</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./main.css">
 </head>
-
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">Just Tech News</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
-  </div>
-  
-  {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}}
-</body>
+    <!--navbar here-->
+    <nav class="relative container mx-auto p-3 bg-spacecadet">
+        <!--flex container-->
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl text-springgreen">RMP 💿</h1>
+            </div>
+            <!--{{#if loggedIn}}-->
+            <div class="hidden md:flex space-x-3">
+               <a href="/dashboard" class="text-lightcyan p-3 px-3 pt-2 hover:text-maxyellow">dash</a>
+               <button id ='logout' class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">logout</button>
+               <!--{{else}}-->
+               <!--
+               <a href="/login" class="text-lightcyan p-3 px-3 pt-2 hover:text-maxyellow">login</a>
+               -->
+               <!--{{/if}}-->
+            </div>
+        </div>
+    </nav>
+    <!--nav end-->
 
+    <!--hero start-->
+    <section id="hero">
+        <!--flex container-->
+        <div id="hero-intro" class="container flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-0 space-y-0 md:space-y-0">
+            <!--left item-->
+            <div id="hero-hello" class="flex flex-col p-6 my-12 ml-11 space-y-12">
+                <h1 class="max-w-md text-2xl font-bold text-center mt-3 md:text-3xl">
+                    Submit and share your playlist with the world ❤️‍🔥 🌎 
+                </h1>
+                <p class="mx-2 max-w-sm text-center md:text-left">
+                    Welcome to a place where you can let your creativity be found!
+                    At RateMyPlaylist, we allow users to submit their Spotify playlist
+                    and have them be voted on and discovered!
+                    Submit today to see if they make our Hot Playlists 🔥
+                </p>
+            </div>
+            <!--right item-->
+            <div class="flex flex-col my-12 ml-12 space-y-6 md:w-1/2">
+                <img src="/public/party-collage.png" alt="photos of club scenes and a woman laughing"/>
+            </div>
+        </div>
+    </section>
+    <!--hero end-->
+
+    <!--Features Section-->
+    <section id="features">
+        <!--flex container-->
+        <div class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row">
+            <!--{{#if loggedIn}}-->
+            <div class="hot-playlists">
+
+            </div>
+            <div id="uploaded-playlists">
+
+            </div>
+            <!--{{else}}-->
+            <div class="hot-playlists">
+
+            </div>
+            <!--{{/if}}-->
+        </div>
+    </section>
+    <!--features end-->
+</body>
 </html>
