@@ -104,3 +104,9 @@ dist
 .tern-port
 
 package-lock.json
+
+.DS_Store
+.prettierrc.json
+.env
+.prettierignore
+tailwind.config.js
