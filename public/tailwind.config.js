@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./views/*/*.handlebars'],
+  content: ['../views/*/*.handlebars'],
   theme: {
     colors: {
       'maxyellow': '#FFCA61',
