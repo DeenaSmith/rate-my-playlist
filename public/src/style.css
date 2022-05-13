@@ -1,0 +1,14 @@
+body {
+  background-color: #1DE588;
+}
+#hero {
+  background-image: url(“../../hero-img.jpeg);
+  background-size: cover;
+  background-position: 15%;
+}
+#hero-intro {
+  background-color: rgba(45, 33, 111, 0.25);
+}
+#hero-hello {
+  background-color: rgba(214, 255, 254, 0.7);
+}
