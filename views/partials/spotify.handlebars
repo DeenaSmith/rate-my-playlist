@@ -1,11 +1,19 @@
-<article class="post">
-  <div class="title">
-    <a href="{{post_url}}" target="_blank">{{title}}</a>
-    <span>({{format_url post_url}})</span>
+<article class='post'>
+  <div class='playlist'>
+    <iframe
+      style='border-radius:12px'
+      src='https://open.spotify.com/embed/playlist/6J1NuBNAsfgqLIVGV4cb1H?utm_source=generator'
+      width='100%'
+      height='380'
+      frameBorder='0'
+      allowfullscreen=''
+      allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+    ></iframe>
   </div>
-  <div class="meta">
-    {{vote_count}} {{format_plural "point" vote_count}} by {{user.username}} on {{format_date created_at}}
-    |
-    <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+  <div class='meta'>
+    {{vote_count}}
+    {{format_plural 'point' vote_count}}
+    by
+    {{user.username}}
   </div>
 </article>
