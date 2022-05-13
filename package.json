@@ -13,8 +13,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "tailwindcss -i ./src/style.css -o ./src/main.css",
-    "watch": "tailwindcss -i ./src/style.css -o ./src/main.css --watch"
+    "build": "tailwindcss -i ./public/src/style.css -o ./public/src/main.css",
+    "watch": "npx tailwindcss -i ./public/src/style.css -o ./public/src/main.css --watch"
   },
   "name": "rate-my-playlist",
   "description": "",
