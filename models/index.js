@@ -1,9 +1,7 @@
 // import models
-const Comment = require('./Comment');
 const Post = require('./Post');
-const Keywords = require('./Keywords');
 const User = require('./User');
-const Vote = require('./Vote');
+const Favorite = require('./Favorite');
 
 User.hasMany(Post, {
   foreignKey: 'user_id'
@@ -15,61 +13,31 @@ Post.belongsTo(User, {
 });
 
 User.belongsToMany(Post, {
-  through: Vote,
-  as: 'voted_posts',
+  through: Favorite,
+  as: 'favorite_posts',
 
   foreignKey: 'user_id',
   onDelete: 'SET NULL'
 });
 
-Vote.belongsTo(User, {
+Favorite.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-Vote.belongsTo(Post, {
+Favorite.belongsTo(Post, {
   foreignKey: 'post_id'
 });
 
-User.hasMany(Vote, {
+User.hasMany(Favorite, {
   foreignKey: 'user_id'
 });
 
-Post.hasMany(Vote, {
-  foreignKey: 'post_id'
-});
-
-Comment.belongsTo(User, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Comment.belongsTo(Post, {
-  foreignKey: 'post_id',
-  onDelete: 'SET NULL'
-});
-
-User.hasMany(Comment, {
-  foreignKey: 'user_id',
-  onDelete: 'SET NULL'
-});
-
-Post.hasMany(Comment, {
-  foreignKey: 'post_id'
-});
-
-Post.hasMany(Keywords, {
-  foreignKey: 'tag_id'
-});
-
-Keywords.belongsToMany(Post, {
-  through: User,
+Post.hasMany(Favorite, {
   foreignKey: 'post_id'
 });
 
 module.exports = {
-  Comment,
   Post,
-  Keywords,
   User,
-  Vote,
+  Favorite,
 };
