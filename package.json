@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "tailwindcss -i ./public/src/style.css -o ./public/src/main.css",
-    "watch": "tailwindcss -i ./public/src/style.css -o ./public/src/main.css --watch"
+    "watch": "npx tailwindcss -i ./public/src/style.css -o ./public/src/main.css --watch"
   },
   "name": "rate-my-playlist",
   "description": "",
