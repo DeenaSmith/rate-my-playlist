@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const postRoutes = require('./post-routes');
+const playlistRoutes = require('./playlist-routes');
 
-router.use('/posts', postRoutes);
+router.use('/playlists', playlistRoutes);
 
 module.exports = router;

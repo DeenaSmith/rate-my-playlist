@@ -1,15 +1,16 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Keywords, Favorite } = require('../models');
+const { Playlist, User, Favorite } = require('../models');
 
-// get all posts for homepage
+// get all playlists for homepage
 router.get('/', (req, res) => {
   console.log('====================');
-  Post.findAll({
+  Playlist.findAll({
     attributes: [
       'id',
       'playlist_url',
       'keyword_name'
+       //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
     ],
     include: [
       {
@@ -18,16 +19,18 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(dbPostData => {
-    const posts = dbPostData.map(post => post.get({ plain: true }));
+  .then(dbPlaylistData => {
+    const playlists = dbPlaylistData.map(playlist => playlist.get({ plain: true }));
 
     // add login condition later
-    res.render('homepage', {posts});
+    res.render('homepage', {playlists});
   })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
 });
+
+ //TODO: login route
 
 module.exports = router;
