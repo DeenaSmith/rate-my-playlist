@@ -1,20 +1,20 @@
 // import models
-const Post = require('./Post');
+const Playlist = require('./Playlist');
 const User = require('./User');
 const Favorite = require('./Favorite');
 
-User.hasMany(Post, {
+User.hasMany(Playlist, {
   foreignKey: 'user_id'
 });
 
-Post.belongsTo(User, {
+Playlist.belongsTo(User, {
   foreignKey: 'user_id',
   onDelete: 'SET NULL'
 });
 
-User.belongsToMany(Post, {
+User.belongsToMany(Playlist, {
   through: Favorite,
-  as: 'favorite_posts',
+  as: 'favorite_playlists',
 
   foreignKey: 'user_id',
   onDelete: 'SET NULL'
@@ -24,20 +24,20 @@ Favorite.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-Favorite.belongsTo(Post, {
-  foreignKey: 'post_id'
+Favorite.belongsTo(Playlist, {
+  foreignKey: 'playlist_id'
 });
 
 User.hasMany(Favorite, {
   foreignKey: 'user_id'
 });
 
-Post.hasMany(Favorite, {
-  foreignKey: 'post_id'
+Playlist.hasMany(Favorite, {
+  foreignKey: 'playlist_id'
 });
 
 module.exports = {
-  Post,
+  Playlist,
   User,
   Favorite,
 };

@@ -1,51 +1,34 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-// create our Post model
-class Post extends Model {
-  static upvote(body, models) {
-    return models.Vote.create({
+// create our Playlist model
+class Playlist extends Model {
+  static upfavorite(body, models) {
+    return models.Favorite.create({
       user_id: body.user_id,
-      post_id: body.post_id,
+      playlist_id: body.playlist_id,
     }).then(() => {
-      return Post.findOne({
+      return Playlist.findOne({
         where: {
-          id: body.post_id,
+          id: body.playlist_id,
         },
         attributes: [
           "id",
           "playlist_url",
-          "title",
-          "created_at",
+          "keyword_name",
           [
             sequelize.literal(
-              "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
+              "(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)"
             ),
-            "vote_count",
+            "favorite_count",
           ],
-        ],
-        include: [
-          {
-            model: models.Comment,
-            attributes: [
-              "id",
-              "comment_text",
-              "post_id",
-              "user_id",
-              "created_at",
-            ],
-            include: {
-              model: models.User,
-              attributes: ["username"],
-            },
-          },
         ],
       });
     });
   }
 }
 
-// create fields/columns for Post model
-Post.init(
+// create fields/columns for playlist model
+Playlist.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -76,8 +59,8 @@ Post.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "post",
+    modelName: "playlist",
   }
 );
 
-module.exports = Post;
+module.exports = Playlist;
