@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Playlist, User, Favorite } = require('../models');
 
+
 // get all playlists for homepage
 router.get('/', (req, res) => {
   console.log('====================');
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
       'id',
       'playlist_url',
       'keyword_name'
-       //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
+      //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
     ],
     include: [
       {
@@ -19,18 +20,33 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(dbPlaylistData => {
-    const playlists = dbPlaylistData.map(playlist => playlist.get({ plain: true }));
+    .then(dbPlaylistData => {
+      const playlists = dbPlaylistData.map(playlist => playlist.get({ plain: true }));
 
-    // add login condition later
-    res.render('homepage', {playlists});
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+      //add login condition later
+      res.render('homepage', {
+        playlists,
+        loggedIn: req.session.loggedIn
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
- //TODO: login route
+
+
+//TODO: login route
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+
 
 module.exports = router;
