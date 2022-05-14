@@ -32,6 +32,39 @@ router.get('/', (req, res) => {
 
 
 //TODO: get playlist by id
+router.get("/:id", (req, res) => {
+  Playlist.findOne({
+      where: {
+          id: req.params.id,
+      },
+      attributes: [
+          "id",
+          "playlist_url",
+          "keyword_name",
+          // [
+          //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
+
+          // ],
+      ],
+      include: [
+          {
+              model: User,
+              attributes: ["username"],
+          },
+      ],
+  })
+      .then((dbPlaylistData) => {
+          if (!dbPlaylistData) {
+              res.status(404).json({ message: "There is no playlist with this id." });
+              return;
+          }
+          res.json(dbPlaylistData);
+      })
+      .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
 
 
 
