@@ -36,8 +36,6 @@ router.get('/', (req, res) => {
     });
 });
 
-
-
 //TODO: login route
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -47,7 +45,5 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
-
-
 
 module.exports = router;
