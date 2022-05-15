@@ -10,8 +10,9 @@ router.get('/', (req, res) => {
     attributes: [
       'id',
       'playlist_url',
-      'keyword_name'
       //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
+      [sequelize.literal('(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'), 'favorite_count'],
+      [sequelize.literal('(SELECT playlist_url(*) FROM playlist ORDER BY favorite_count DESC'), 'playlist_order']
     ],
     include: [
       {
@@ -23,7 +24,7 @@ router.get('/', (req, res) => {
     .then(dbPlaylistData => {
       const playlists = dbPlaylistData.map(playlist => playlist.get({ plain: true }));
 
-      //add login condition later
+      // add login condition later
       res.render('homepage', {
         playlists,
         loggedIn: req.session.loggedIn

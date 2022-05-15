@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
       "id",
       "playlist_url",
       //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
+      [sequelize.literal('(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'), 'favorite_count'],
     ],
     include: [
       {
@@ -35,10 +36,6 @@ router.get("/:id", (req, res) => {
     attributes: [
       "id",
       "playlist_url",
-      // [
-      //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
-
-      // ],
     ],
     include: [
       {

@@ -8,7 +8,7 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     console.log('======================');
-    Post.findAll({
+    Playlist.findAll({
         where: {
             user_id: req.session.user_id
         },
@@ -17,8 +17,10 @@ router.get('/', withAuth, (req, res) => {
             'post_url',
             'title',
             'created_at',
-      //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
-    ],
+            //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
+            [sequelize.literal('(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'), 'favorite_count'],
+            [sequelize.literal('(SELECT playlist_url(*) FROM playlist ORDER BY favorite_count DESC'), 'playlist_order']
+        ],
         include: [
             {
                 model: User,
