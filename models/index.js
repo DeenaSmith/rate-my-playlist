@@ -14,18 +14,27 @@ Playlist.belongsTo(User, {
 
 User.belongsToMany(Playlist, {
   through: Favorite,
-  as: 'favorite_playlists',
+  as: 'favorited_playlists',
 
   foreignKey: 'user_id',
   onDelete: 'SET NULL'
 });
 
+Playlist.belongsToMany(User, {
+  through: Favorite,
+  as: 'favorited_playlists',
+  foreignKey: 'playlist_id',
+  onDelete: 'SET NULL'
+})
+
 Favorite.belongsTo(User, {
-  foreignKey: 'user_id'
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL'
 });
 
 Favorite.belongsTo(Playlist, {
-  foreignKey: 'playlist_id'
+  foreignKey: 'playlist_id',
+  onDelete: 'SET NULL'
 });
 
 User.hasMany(Favorite, {
@@ -39,5 +48,5 @@ Playlist.hasMany(Favorite, {
 module.exports = {
   Playlist,
   User,
-  Favorite,
+  Favorite
 };

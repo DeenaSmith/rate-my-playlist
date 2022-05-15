@@ -11,7 +11,12 @@ router.get("/", (req, res) => {
       "id",
       "playlist_url",
       //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
-      // [sequelize.literal('(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'), 'favorite_count'],
+      [
+        sequelize.literal(
+          "(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)"
+        ),
+        "favorite_count",
+      ],
     ],
     include: [
       {
@@ -19,9 +24,7 @@ router.get("/", (req, res) => {
         attributes: ["username"],
       },
     ],
-    // order: [
-    //   ['favorite_count', 'DESC']
-    // ],
+    order: [[sequelize.col("favorite_count"), "DESC"]],
   })
     .then((dbPlaylistData) => res.json(dbPlaylistData))
     .catch((err) => {
@@ -36,10 +39,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [
-      "id",
-      "playlist_url",
-    ],
+    attributes: ["id", "playlist_url"],
     include: [
       {
         model: User,
@@ -77,17 +77,15 @@ router.post("/", withAuth, (req, res) => {
 router.put("/upfavorite", withAuth, (req, res) => {
   // custom static method created in models/Post.js
   Playlist.upfavorite(
-      { ...req.body, user_id: req.session.user_id },
-      { Favorite, User }
+    { ...req.body, user_id: req.session.user_id },
+    { Favorite, User }
   )
-      .then((updatedFavoriteData) => res.json(updatedFavoriteData))
-      .catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
-      });
+    .then((updatedFavoriteData) => res.json(updatedFavoriteData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
-
-
 
 //TODO: delete playlist
 router.delete("/:id", withAuth, (req, res) => {
