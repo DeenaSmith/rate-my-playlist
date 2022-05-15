@@ -14,9 +14,7 @@ router.get('/', withAuth, (req, res) => {
         },
         attributes: [
             'id',
-            'post_url',
-            'title',
-            'created_at',
+            'playlist_url',
             //TODO: Write Sequelize Literal to show all playlists in descending order by favorite count
             [sequelize.literal('(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'), 'favorite_count'],
             [sequelize.literal('(SELECT playlist_url(*) FROM playlist ORDER BY favorite_count DESC'), 'playlist_order']
@@ -37,7 +35,5 @@ router.get('/', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
-
-
 
 module.exports = router;
