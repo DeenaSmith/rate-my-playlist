@@ -71,6 +71,20 @@ router.post("/", withAuth, (req, res) => {
 });
 
 //TODO: upfavorite playlist
+router.put("/upfavorite", withAuth, (req, res) => {
+  // custom static method created in models/Post.js
+  Playlist.upfavorite(
+      { ...req.body, user_id: req.session.user_id },
+      { Favorite, User }
+  )
+      .then((updatedFavoriteData) => res.json(updatedFavoriteData))
+      .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
+
 
 //TODO: delete playlist
 router.delete("/:id", withAuth, (req, res) => {
