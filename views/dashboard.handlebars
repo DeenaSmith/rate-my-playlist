@@ -1,23 +1,22 @@
-<section>
-  <h2>Upload Your Playlist</h2>
-
-  <form class="new-post-form">
-    <div>
-      <label for="post-url">Link</label>
+<section class="p-3 mx-auto space-y-6">
+  <h2 class="text-3xl">Upload Your Playlist</h2>
+  <form class="new-post-form space-x-3">
+    <div class="my-auto space-x-2">
+      <label for="post-url">Link:</label>
       <input id="post-url" name="post-url" />
+      <button type="submit" class="p-2 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Create</button>
     </div>
-    <button type="submit" class="btn">Create</button>
   </form>
 </section>
 
 {{#if posts.length}}
-<section>
-  <h2>Your Uploaded Playlists</h2>
+<section class="p-3 mx-auto space-y-6">
+  <h2 class="text-3xl">Your Uploaded Playlists</h2>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="delete-link">Delete</a>
+      <a href="/dashboard/edit/{{post.id}}" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</a>
     </li>
     {{/each}}
   </ol>
@@ -25,4 +24,5 @@
 {{/if}}
 
 <script src="/javascript/delete-post.js"></script>
-<script src="/javascript/add-post.js"></script>
+<script src="/javascript/add-playlist.js"></script>
+<script src="/javascript/logout.js"></script>
