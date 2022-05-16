@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 // create our Playlist model
 class Playlist extends Model {
   static upfavorite(body, models) {
@@ -12,14 +12,13 @@ class Playlist extends Model {
           id: body.playlist_id,
         },
         attributes: [
-          "id",
-          "playlist_url",
-          "keyword_name",
+          'id',
+          'playlist_url',
           [
             sequelize.literal(
-              "(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)"
+              '(SELECT COUNT(*) FROM favorite WHERE playlist.id = favorite.playlist_id)'
             ),
-            "favorite_count",
+            'favorite_count',
           ],
         ],
       });
@@ -43,23 +42,19 @@ Playlist.init(
         isUrl: true,
       },
     },
-    keyword_name: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
-    }
+    },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "playlist",
+    modelName: 'playlist',
   }
 );
 
