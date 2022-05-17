@@ -1,11 +1,15 @@
-<article class='post'>
+<article id="{{id}}" class='article-playlists'>
   <div class='playlist'>
     <iframe style='border-radius:12px'
       src='https://open.spotify.com/embed/playlist/{{playlist_url}}?utm_source=generator' width='100%' height='380'
       frameBorder='0' allowfullscreen=''
       allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'></iframe>
   </div>
-  <button class="favorite-btn p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
-    favorite
+  <div>
+    {{favorite_count}} Favorites
+  </div>
+  <button type="button" class="favorite favorite-btn p-2 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
+    Favorite
   </button>
 </article>
+

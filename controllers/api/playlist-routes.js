@@ -74,7 +74,7 @@ router.post("/", withAuth, (req, res) => {
 });
 
 //TODO: upfavorite playlist
-router.put("/upfavorite", withAuth, (req, res) => {
+router.put("/favorite", withAuth, (req, res) => {
   // custom static method created in models/Post.js
   Playlist.upfavorite(
     { ...req.body, user_id: req.session.user_id },
@@ -88,24 +88,24 @@ router.put("/upfavorite", withAuth, (req, res) => {
 });
 
 //TODO: delete playlist
-router.delete("/:id", withAuth, (req, res) => {
-  console.log("id", req.params.id);
-  Playlist.destroy({
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "There is no playlist with this id." });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.delete("/:id", withAuth, (req, res) => {
+//   console.log("id", req.params.id);
+//   Playlist.destroy({
+//     where: {
+//       id: req.params.id,
+//     },
+//   })
+//     .then((dbPostData) => {
+//       if (!dbPostData) {
+//         res.status(404).json({ message: "There is no playlist with this id." });
+//         return;
+//       }
+//       res.json(dbPostData);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 module.exports = router;

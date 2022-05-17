@@ -16,13 +16,11 @@
     {{#each playlists as |playlist|}}
     <li>
       {{> playlist-info playlist}}
-      <button class="delete-playlist-btn p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</button>
     </li>
     {{/each}}
   </ol>
 </section>
 {{/if}}
-
-<script src="/javascript/delete-post.js"></script>
+<script src="/javascript/favorite.js"></script>
 <script src="/javascript/add-playlist.js"></script>
 <script src="/javascript/logout.js"></script>
