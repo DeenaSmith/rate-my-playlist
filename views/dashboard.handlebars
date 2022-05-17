@@ -1,4 +1,4 @@
-<section class="p-3 mx-auto space-y-6">
+<section class="container p-3 mx-auto space-y-6">
   <h2 class="text-3xl">Upload Your Playlist</h2>
   <form class="new-playlist-form space-x-3">
     <div class="my-auto space-x-2">
@@ -10,13 +10,13 @@
 </section>
 
 {{#if playlists.length}}
-<section class="p-3 mx-auto space-y-6">
+<section class="container p-3 mx-auto space-y-6">
   <h2 class="text-3xl">Your Uploaded Playlists</h2>
   <ol>
     {{#each playlists as |playlist|}}
     <li>
       {{> playlist-info playlist}}
-      <a href="/dashboard/edit/{{playlist.id}}" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</a>
+      <button class="delete-playlist-btn p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</button>
     </li>
     {{/each}}
   </ol>
