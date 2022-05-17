@@ -1,6 +1,6 @@
 <section class="p-3 mx-auto space-y-6">
   <h2 class="text-3xl">Upload Your Playlist</h2>
-  <form class="new-post-form space-x-3">
+  <form class="new-playlist-form space-x-3">
     <div class="my-auto space-x-2">
       <label for="post-url">Link:</label>
       <input id="post-url" name="post-url" />
@@ -9,14 +9,14 @@
   </form>
 </section>
 
-{{#if posts.length}}
+{{#if playlists.length}}
 <section class="p-3 mx-auto space-y-6">
   <h2 class="text-3xl">Your Uploaded Playlists</h2>
   <ol>
-    {{#each posts as |post|}}
+    {{#each playlists as |playlist|}}
     <li>
-      {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</a>
+      {{> playlist-info playlist}}
+      <a href="/dashboard/edit/{{playlist.id}}" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">Delete</a>
     </li>
     {{/each}}
   </ol>
