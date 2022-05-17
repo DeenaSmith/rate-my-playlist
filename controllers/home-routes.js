@@ -25,12 +25,11 @@ router.get("/", (req, res) => {
     ],
     order: [[sequelize.col("favorite_count"), "DESC"]],
   })
-    .then((dbPlaylistData) => {
+    .then(async (dbPlaylistData) => {
       const playlists = dbPlaylistData.map((playlist) =>
         playlist.get({ plain: true })
       );
 
-      // add login condition later
       res.render("homepage", {
         playlists,
         loggedIn: req.session.loggedIn,

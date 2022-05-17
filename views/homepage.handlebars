@@ -7,20 +7,13 @@
       <!--playlist partial-->
       {{#each playlists as |playlist|}}
       {{> playlist-info playlist}}
-      {{/each}}
-    </div>
+      {{/each}}  
 
-    <div id="uploaded-playlists">
-      <h2 class="text-2xl mx-auto py-3 text-spacecadet">Your Uploaded Playlists</h2>
-      <!--user.playlist partial-->
-      {{#each playlists as |playlist|}}
-      {{> playlist-info playlist}}
-      {{/each}}
+
     </div>
   </div>
 
   {{else}}
-
     <div class="fav-playlists">
       <h2 class="text-3xl mx-auto py-3 text-spacecadet">Hot Playlists 🔥</h2>
       <div class="grid grid-flow space-y-3">
@@ -30,6 +23,8 @@
         {{/each}}
       </div>
     </div>
-
   {{/if}}
 </div>
+{{#if loggedIn}}
+<script src="/javascript/favorite.js"></script>
+{{/if}}
