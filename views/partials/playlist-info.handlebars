@@ -2,7 +2,7 @@
   <div class='playlist'>
     <iframe
       style='border-radius:12px'
-      src='https://open.spotify.com/embed/playlist/6J1NuBNAsfgqLIVGV4cb1H?utm_source=generator'
+      src='https://open.spotify.com/embed/playlist/{{playlist_url}}?utm_source=generator'
       width='100%'
       height='380'
       frameBorder='0'
@@ -10,7 +10,10 @@
       allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
     ></iframe>
   </div>
-</article>
-<button id="favorite-btn" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
+  {{#if loggedIn}}
+  <button id="favorite-btn" class="p-3 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
   favorite
 </button>
+{{/if}}
+</article>
+
