@@ -1,4 +1,4 @@
-<article id="{{id}}" class='article-playlists'>
+<article id="{{id}}" value="{{id}}" class='article-playlists'>
   <div class='playlist'>
     <iframe style='border-radius:12px'
       src='https://open.spotify.com/embed/playlist/{{playlist_url}}?utm_source=generator' width='100%' height='380'
@@ -8,7 +8,7 @@
   <div>
     {{favorite_count}} Favorites
   </div>
-  <button type="button" class="favorite favorite-btn p-2 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
+  <button type="button" value="{{id}}" onclick="doSomething(this.id, this.value)" class="favorite favorite-btn p-2 px-6 pt-2 bg-midnightblue text-lightcyan rounded-full baseline hover:bg-rosebonbon">
     Favorite
   </button>
 </article>
