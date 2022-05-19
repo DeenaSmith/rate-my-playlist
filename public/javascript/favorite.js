@@ -1,15 +1,9 @@
-async function favoriteClickHandler(event) {
-    event.preventDefault();
-    var getAllArticles = document.querySelectorAll('.article-playlists')
-    for (var i = 0; i < getAllArticles.length; i++) {
-    var id = document.getElementsByTagName('article')[i].id;
-    }
-
-    console.log(id);
+async function doSomething(id, value) {
+    console.log(value)
     const response = await fetch('/api/playlists/favorite', {
         method: 'PUT',
         body: JSON.stringify({
-            playlist_id: id
+            playlist_id: value
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -23,7 +17,4 @@ async function favoriteClickHandler(event) {
     }
 };
 
-const getFavorite = document.querySelectorAll('.favorite');
-
-getFavorite.forEach(favorite => favorite.addEventListener('click', favoriteClickHandler))
-// document.querySelector('.favorite-btn').addEventListener('click', favoriteClickHandler);
+document.querySelector('.favorite-btn').addEventListener('click', doSomething);
